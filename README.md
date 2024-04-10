@@ -56,7 +56,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement add function in Subscriber repository.`
     -   [x] Commit: `Implement list_all function in Subscriber repository.`
     -   [x] Commit: `Implement delete function in Subscriber repository.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
     -   [ ] Commit: `Implement subscribe function in Notification service.`
@@ -77,6 +77,12 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1. Tergantung pada bagaimana kita akan mengimplementasikan `Subscriber`. Jika kita ingin mengimplementasikan metode atau behavior yang berbeda-beda (unique) untuk jenis-jenis Subscriber, diperlukan adanya interface untuk Subscriber. Jika semua Subscriber akan memiliki behavior dan method yang sama maka a single Model struct sudah cukup.
+
+2. Jika sebuah attribute harus unik, menggunakan `Vec` (list) mungkin tidak cukup karena `Vec` tidak secara otomatis memastikan keunikan elemennya. Demgam menggunakan `DashMap` (peta/dictionary) seperti yang sudah diimplementasikan, lebih tepat karena `DashMap` memastikan keunikan kunci dan mencegah duplikasi URL. Dengan menggunakan `DashMap`, terjamin bahwa setiap elemen hanya ada satu pada dalam struktur data karena ketika kita memasukkan elemen key yang sudah ada, maka valuenya akan diperbarui dengan yang baru.
+
+3. Mengimplementasikan Singleton pattern secara langsung juga tetap dapat menjamin keamanan thread bagi program asalkan kita dapat mengimplementasikan secara mandiri dengan benar (dapat menggunakan `Mutex`), tidak seperti menggunakan DashMap yang merupakan library siap pakai yang sudah terjamin thread safetynya tanpa kita implementasikan sendiri.
+
 
 #### Reflection Publisher-2
 
