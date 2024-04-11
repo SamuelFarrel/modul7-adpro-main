@@ -63,13 +63,13 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement subscribe function in Notification controller.`
     -   [x] Commit: `Implement unsubscribe function in Notification service.`
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
     -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [x] Commit: `Implement publish function in Program service and Program controller.`
     -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -85,5 +85,15 @@ This is the place for you to write reflections:
 
 
 #### Reflection Publisher-2
+1. Pemisahan `Model` dengan `Service` dan `Repository` diperlukan agar tidak semua responsibility dihandle oleh `Model` saja, tetapi dibagi juga ke `Service` dan `Repository` sesuai dengan fungsinya masing-masing. Dengan begitu, pemisahan ini membuat aplikasi memenuhi kaidah clean code dan _Single Responsibility Principle_ sehingga kode akan lebih mudah dalam pemeliharaan dan pembaharuan.
+
+2. Jika aplikasi hanya menggunakan `Model` saja, seluruh responsibility akan dihandle oleh model sehingga kode dari tiap model akan lebih kompleks dan panjang karena kode akan mengatur request dan response, struct data container, berisi method untuk business logic, dan menjadi database beserta method untuk mengaksesnya. Secara singkat, semua tugas masing-masing komponen MVC akan dihandle oleh kode dari `Model`.
+
+3. Saya telah menggunakan Postman sejak semester lalu dan sudah lumayan mengeksplor fitur-fitur yang ada. Aplikasi ini biasanya saya gunakan untuk melakukan testing terhadap fungsionalitas aplikasi dengan mengirimkan request dan memeriksa response yang diberikan kembali oleh aplikasi. Fitur yang menurut saya akan berguna adalah `import documentation` yang juga kita gunakan untuk tutorial ini karena kita dapat menggunakan use case yang telah dibuat sebelumnya dan fitur fitur API testingnya secara keseluruhan.
 
 #### Reflection Publisher-3
+1. Pada tutorial, observer pattern yang digunakan adalah Push model karena ketika ada perubahan yang terjadi pada produk, `NotificationService` akan memberikan notifikasi ke subscriber tentang perubahan yang terjadi.
+
+2. Keuntungan menggunakan pull model adalah subscriber lebih bebas untuk menentukan kapan mereka akan menerima notifikasi dan akan lebih efisien karena notifikasi akan dikirimkan jika diperlukan saja. Kekurangannya, diperlukan logic tambahan untuk menghandle pengambilan data notifikasi oleh subscriber dan adanya penundaan sampainya informasi kepada subscriber.
+
+3. Jika kita tidak menggunakan multi-threading untuk notifikasi, masalah akan muncul ketika ada banyak subscriber yang perlu dinotify secara bersamaan karena proses notifikasi akan dilakukan secara berurutan, yang dapat menyebabkan penundaan dalam memberikan notifikasi kepada subscriber.
